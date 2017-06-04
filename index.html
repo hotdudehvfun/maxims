@@ -1,8 +1,6 @@
 <html><head>
 	<title>WELCOME</title>
-	<link rel="stylesheet" type="text/css" href="mycss.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style type="text/css">
 	@font-face{
     font-family: t;
@@ -48,12 +46,10 @@ body
 </style>
 </head>
 <body id="body">
-<input type="number" id="seek" value="0" onblur="changeFromInput();"></input>
+<input type="number" id="seek" value="0" min="0" max="" onblur="changeFromInput();"></input>
 
 <div id="a" class="data" onclick="getNewData();">Maxim</div></br>
 <div id="b" class="data" onclick="getNewData();">Proverb</div>
-
-
 
 <script type="text/javascript">
 	var pos;
@@ -89,14 +85,23 @@ function start(argument)
 		pos=0;
 	else
 		pos=parseInt(localStorage.pos);
-	console.log(pos);
+	
+	document.getElementById("seek").setAttribute("max",array.length-1);
 	change(pos);
+
 }
 function changeFromInput()
 {
 	var v=document.getElementById('seek').value;
 	pos=v;
-	change(pos);
+	if(pos<0|| pos>=array.length)
+	{
+		alert("Limit is between 0 and "+array.length-1);
+	}else
+	{
+	change(pos);		
+	}
+	
 }
 
 function getNewData()
