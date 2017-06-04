@@ -11,16 +11,15 @@ body
 	
 	color: black;
 }
-#seek
+#seek,#max
 {
 	border: none;
     font-size:larger;
     background: rgba(255, 255, 255, 0);
     opacity: 0.5;
-    width: 100%;
-    text-align: center;
-    margin-top: 2%;
     color: #111;
+    width: 100%;
+    text-align:center;
 }
 .data
 {
@@ -46,7 +45,12 @@ body
 </style>
 </head>
 <body id="body">
-<input type="number" id="seek" value="0" min="0" max="" onblur="changeFromInput();"></input>
+<div>
+<input type="number" id="seek" value="0" min="0" max="" onblur="changeFromInput();"/>
+<input type="text"   id="max" disabled="" />
+
+</div>
+
 
 <div id="a" class="data" onclick="getNewData();">Maxim</div></br>
 <div id="b" class="data" onclick="getNewData();">Proverb</div>
@@ -87,6 +91,7 @@ function start(argument)
 		pos=parseInt(localStorage.pos);
 	
 	document.getElementById("seek").setAttribute("max",array.length-1);
+	document.getElementById("max").value="/"+(array.length-1);
 	change(pos);
 
 }
